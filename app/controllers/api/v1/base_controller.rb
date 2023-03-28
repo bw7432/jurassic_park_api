@@ -9,9 +9,24 @@ module Api
             version: 1,
             current_time: DateTime.now
           },
-          status: 'OK'
+          status: 200
         }
       end
+
+      def success!(data = {}, code = nil)
+        code ||= 200
+
+        render json: { status: code, data: data }
+      end
+
+      def fail!(errors, code = nil)
+        errors = [errors] if errors.is_a? String
+
+        code ||= 422
+
+        render json: { status: code, errors: errors }
+      end
+
     end
   end
 end

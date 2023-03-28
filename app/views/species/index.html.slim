@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Species
+
+#species
+  - @species.each do |species|
+    == render species
+    p
+      = link_to "Show this species", species
+
+= link_to "New species", new_species_path
