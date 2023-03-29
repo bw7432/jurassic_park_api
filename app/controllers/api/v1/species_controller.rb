@@ -20,7 +20,7 @@ module Api
         @species = Species.new(species_params)
     
         if @species.save
-          success!(Blueprints::V1::SpeciesBlueprint.render_as_hash(@species))
+          success!(::V1::SpeciesBlueprint.render_as_hash(@species))
         else
           fail!(@species.errors.full_messages)
         end
@@ -29,7 +29,7 @@ module Api
       # PATCH/PUT /species/1
       def update
         if @species.update(species_params)
-          success!(Blueprints::V1::SpeciesBlueprint.render_as_hash(@species))
+          success!(::V1::SpeciesBlueprint.render_as_hash(@species))
         else
           fail(@species.errors.full_messages)
         end
