@@ -1,0 +1,10 @@
+h1 Editing dinosaur
+
+== render "form", dinosaur: @dinosaur
+
+br
+
+div
+  => link_to "Show this dinosaur", @dinosaur
+  '|
+  =< link_to "Back to dinosaurs", dinosaurs_path

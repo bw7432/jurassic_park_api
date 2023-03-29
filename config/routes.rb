@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :dinosaurs
+  resources :cages
   resources :species
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -7,6 +9,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :dinosaurs
+      resources :cages
       resources :species
     end
   end

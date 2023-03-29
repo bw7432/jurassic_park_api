@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @dinosaur
+
+div
+  => link_to "Edit this dinosaur", edit_dinosaur_path(@dinosaur)
+  '|
+  =< link_to "Back to dinosaurs", dinosaurs_path
+
+  = button_to "Destroy this dinosaur", @dinosaur, method: :delete

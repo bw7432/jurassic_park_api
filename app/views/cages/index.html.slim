@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Cages
+
+#cages
+  - @cages.each do |cage|
+    == render cage
+    p
+      = link_to "Show this cage", cage
+
+= link_to "New cage", new_cage_path

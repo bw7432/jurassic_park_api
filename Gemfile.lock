@@ -68,6 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    apipie-rails (0.9.3)
+      actionpack (>= 5.0)
+      activesupport (>= 5.0)
     autoprefixer-rails (10.4.13.0)
       execjs (~> 2)
     bindex (0.8.1)
@@ -97,6 +100,11 @@ GEM
     diff-lcs (1.5.0)
     erubi (1.12.0)
     execjs (2.8.1)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
     globalid (1.1.0)
       activesupport (>= 5.0)
@@ -260,11 +268,13 @@ PLATFORMS
   arm64-darwin-22
 
 DEPENDENCIES
+  apipie-rails
   blueprinter
   bootsnap
   bootstrap (~> 5.2.2)
   capybara
   debug
+  factory_bot_rails
   importmap-rails
   jbuilder
   pg

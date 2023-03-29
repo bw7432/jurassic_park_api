@@ -1,0 +1,10 @@
+p style="color: green" = notice
+
+== render @cage
+
+div
+  => link_to "Edit this cage", edit_cage_path(@cage)
+  '|
+  =< link_to "Back to cages", cages_path
+
+  = button_to "Destroy this cage", @cage, method: :delete

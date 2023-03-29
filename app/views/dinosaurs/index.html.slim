@@ -1,0 +1,11 @@
+p style="color: green" = notice
+
+h1 Dinosaurs
+
+#dinosaurs
+  - @dinosaurs.each do |dinosaur|
+    == render dinosaur
+    p
+      = link_to "Show this dinosaur", dinosaur
+
+= link_to "New dinosaur", new_dinosaur_path
