@@ -9,6 +9,7 @@ class CanAssignToCageValidator < ActiveModel::Validator
     when 'herbivore'
       record.errors.add :base, 'cannot add herbivore to carnivore cage' if contains_carnivore(record)
     end
+    record.errors.add :base, 'cage is powered off' if record.cage.power_status == 'down'
   end
 
   def contains_carnivore(record)

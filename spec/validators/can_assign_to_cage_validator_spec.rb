@@ -15,6 +15,8 @@ RSpec.describe CanAssignToCageValidator do
 
     let(:empty_cage) { create(:cage, name: 'Empty Cage') }
 
+    let(:powered_off_cage) { create(:cage, name: 'Powered Off Cage', power_status: 'down')}
+
     let(:velociraptor_cage) { create(:cage, name: 'Velociraptor Cage') }
     let(:tyrannosaurus_cage) { create(:cage, name: 'tyrannosaurus Cage') }
 
@@ -61,6 +63,11 @@ RSpec.describe CanAssignToCageValidator do
 
     it 'should not allow adding an herbivore to a cage that contains a carnivore' do
       triceratops_3 = Dinosaur.new(name: 'Triceratops 3', species: triceratops, cage: velociraptor_cage)
+      expect(triceratops_3).not_to be_valid
+    end
+
+    it 'should not allow adding a dinosour to a cage that is powered off' do
+      triceratops_3 = Dinosaur.new(name: 'Triceratops 3', species: triceratops, cage: powered_off_cage)
       expect(triceratops_3).not_to be_valid
     end
 
