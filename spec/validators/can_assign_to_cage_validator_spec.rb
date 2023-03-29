@@ -5,18 +5,18 @@ require 'active_model'
 RSpec.describe CanAssignToCageValidator do
   describe 'add a dinosaur' do
 
-    let!(:velociraptor) { create(:species, name: 'Velociraptor', type_of: 'carnivore') }
-    let!(:tyrannosaurus) { create(:species, name: 'Tyrannosaurus', type_of: 'carnivore') }
-    let!(:brachiosaurus) { create(:species, name: 'Brachiosaurus', type_of: 'herbivore') }
-    let!(:triceratops) { create(:species, name: 'Triceratops', type_of: 'herbivore') }
+    let(:velociraptor) { create(:species, name: 'Velociraptor', type_of: 'carnivore') }
+    let(:tyrannosaurus) { create(:species, name: 'Tyrannosaurus', type_of: 'carnivore') }
+    let(:brachiosaurus) { create(:species, name: 'Brachiosaurus', type_of: 'herbivore') }
+    let(:triceratops) { create(:species, name: 'Triceratops', type_of: 'herbivore') }
 
-    let!(:herbivore_cage) { create(:cage, name: 'Herbivore Cage') }
-    let!(:carnivore_cage) { create(:cage, name: 'Carnivore Cage') }
+    let(:herbivore_cage) { create(:cage, name: 'Herbivore Cage') }
+    let(:carnivore_cage) { create(:cage, name: 'Carnivore Cage') }
 
-    let!(:empty_cage) { create(:cage, name: 'Empty Cage') }
+    let(:empty_cage) { create(:cage, name: 'Empty Cage') }
 
-    let!(:velociraptor_cage) { create(:cage, name: 'Velociraptor Cage') }
-    let!(:tyrannosaurus_cage) { create(:cage, name: 'tyrannosaurus Cage') }
+    let(:velociraptor_cage) { create(:cage, name: 'Velociraptor Cage') }
+    let(:tyrannosaurus_cage) { create(:cage, name: 'tyrannosaurus Cage') }
 
     before(:each) do
       create(:dinosaur, name: 'velociraptor_tom', cage: velociraptor_cage, species: velociraptor)
@@ -29,7 +29,6 @@ RSpec.describe CanAssignToCageValidator do
     end
 
     it 'should allow dinosaurs to added to empty cages' do
-
       # validate both against an empty cage
       herbivore_empty_cage = Dinosaur.new(name: 'herbivore Jim', species: brachiosaurus, cage: empty_cage)
       expect(herbivore_empty_cage).to be_valid
@@ -60,30 +59,10 @@ RSpec.describe CanAssignToCageValidator do
       expect(velociraptor_3).not_to be_valid
     end
 
-      # try adding a velociraptor to the tyrannosaurus cage
-      # velociraptor_3 = Dinosaur.new(name: 'Velociraptor 2', species: velociraptor, cage: tyrannosaurus_cage)
-      # expect(velociraptor_3).not_to be_valid
+    it 'should not allow adding an herbivore to a cage that contains a carnivore' do
+      triceratops_3 = Dinosaur.new(name: 'Triceratops 3', species: triceratops, cage: velociraptor_cage)
+      expect(triceratops_3).not_to be_valid
+    end
 
-      # velociraptor_1 = Dinosaur.new(name: 'Predator', species: velociraptor, cage: velociraptor_cage)
-      # expect(velociraptor_1).to be_valid
-
-      # velociraptor_2 = Dinosaur.new(name: 'Predator', species: velociraptor, cage: velociraptor_cage)
-      # expect(velociraptor_2).to be_valid
-
-      # only allow velociraptors to be added to the velociraptor cage
-      # tyrannosaurus_1 = Dinosaur.new(name: 'Predator', species: tyrannosaurus, cage: velociraptor_cage)
-      # expect(tyrannosaurus_1).not_to be_valid
-      
-      # binding.break
-
-
-      # do not allow a carnivote to be added to a cage with an herbivore
-
-      # do not allow an herbivore to be added to a cage that contains a carnivore
-      # brachiosaurus_1 = Dinosaur.new(name: 'Prey', species: brachiosaurus, cage: velociraptor_cage)
-      # expect(brachiosaurus_1).not_to be_valid
-
-
-    # end
   end
 end

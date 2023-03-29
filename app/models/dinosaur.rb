@@ -9,4 +9,6 @@ class Dinosaur < ApplicationRecord
   validates_with CanAssignToCageValidator
 
   scope :by_species, -> (species) { joins(:species).where('lower(species.name) = ?', species.try(:downcase) ) }
+
+  scope :carnivores, -> joins(:species).where(species: { type_of: 'carnivore'})
 end
