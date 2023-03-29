@@ -5,8 +5,7 @@ module Api
 
       # GET /cages
       def index
-        @cages = Cage
-        @cages = @cages.where(power_status: params[:power_status]) if params[:power_status].present?
+        @cages = Cage.filter(params.slice(:power_status))
 
         success!(::V1::CagesBlueprint.render_as_hash(@cages))
       end

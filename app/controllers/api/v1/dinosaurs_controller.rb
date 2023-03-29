@@ -5,7 +5,7 @@ module Api
 
       # GET /dinosaurs
       def index
-        @dinosaurs = Dinosaur.all.includes(:cage, :species)
+        @dinosaurs = Dinosaur.filter(params.slice(:species, :type_of, :cage_id)).includes(:cage, :species)
 
         success!(::V1::DinosaursBlueprint.render_as_hash(@dinosaurs))
       end

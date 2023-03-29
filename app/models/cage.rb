@@ -1,4 +1,5 @@
 class Cage < ApplicationRecord
+  include Filterable
   has_many :dinosaurs
 
   validates :name, presence: true

@@ -15,6 +15,8 @@ RSpec.describe CanAssignToCageValidator do
 
     let(:empty_cage) { create(:cage, name: 'Empty Cage') }
 
+    let(:full_cage) { create(:cage, name: 'Full Cage', max_occupancy: 1) }
+
     let(:powered_off_cage) { create(:cage, name: 'Powered Off Cage', power_status: 'down')}
 
     let(:velociraptor_cage) { create(:cage, name: 'Velociraptor Cage') }
@@ -28,6 +30,8 @@ RSpec.describe CanAssignToCageValidator do
       create(:dinosaur, name: 'brachiosaurus_doe', cage: herbivore_cage, species: brachiosaurus)
 
       create(:dinosaur, name: 'Triceratops_willy', cage: herbivore_cage, species: triceratops)
+
+      create(:dinosaur, name: 'Triceratops_andy', cage: full_cage, species: triceratops)
     end
 
     it 'should allow dinosaurs to added to empty cages' do
@@ -69,6 +73,11 @@ RSpec.describe CanAssignToCageValidator do
     it 'should not allow adding a dinosour to a cage that is powered off' do
       triceratops_3 = Dinosaur.new(name: 'Triceratops 3', species: triceratops, cage: powered_off_cage)
       expect(triceratops_3).not_to be_valid
+    end
+
+    it 'should not allow adding a dinosour to a full cage' do
+      triceratops_4 = Dinosaur.new(name: 'Triceratops 4', species: triceratops, cage: full_cage)
+      expect(triceratops_4).not_to be_valid
     end
 
   end
