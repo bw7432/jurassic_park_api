@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/' => 'dinosaurs#index'
   resources :dinosaurs
   resources :cages
   resources :species

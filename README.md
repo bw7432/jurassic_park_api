@@ -1,24 +1,34 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Getting Started
 
-Things you may want to cover:
+```bash
 
-* Ruby version
+git clone git@github.com:bw7432/jurassic_park_api.git
 
-* System dependencies
+rails db:create db:migrate
 
-* Configuration
+rails s
 
-* Database creation
+```
 
-* Database initialization
+## run the tests for the validator
 
-* How to run the test suite
+```bash
+rspec spec/validators/can_assign_to_cage_validator_spec.rb
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## api can be found at localhost/api/v1
+## show all routes
 
-* Deployment instructions
+```bash
+rails routes
+```
 
-* ...
+## did not get to:
+
+- Cages cannot be powered off if they contain dinosaurs.
+- Cages know how many dinosaurs are contained.
+
+## concurrency
+- Due to ruby's GIL, I don't see a real problem with this code as being non-thread safe. I'm not using workers here so there wouldn't be an issue of separate workers trying to assign a carnivore and an herbivore to the same cage at the same time, even then it be very unlikely.
