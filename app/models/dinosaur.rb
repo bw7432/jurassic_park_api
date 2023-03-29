@@ -10,5 +10,7 @@ class Dinosaur < ApplicationRecord
 
   scope :by_species, -> (species) { joins(:species).where('lower(species.name) = ?', species.try(:downcase) ) }
 
-  scope :carnivores, -> joins(:species).where(species: { type_of: 'carnivore'})
+  scope :carnivores, -> () { joins(:species).where(species: { type_of: 'carnivore'}) }
+
+  scope :herbivores, -> () { joins(:species).where(species: { type_of: 'herbivore'}) }
 end

@@ -12,15 +12,14 @@ class CanAssignToCageValidator < ActiveModel::Validator
   end
 
   def contains_carnivore(record)
-    record.cage.dinosaurs.joins(:species).where(species: { type_of: 'carnivore'}).exists?
+    record.cage.dinosaurs.carnivores.exists?
   end
 
   def contains_herbivore(record)
-    record.cage.dinosaurs.joins(:species).where(species: { type_of: 'herbivore'}).exists?
+    record.cage.dinosaurs.herbivores.exists?
   end
 
   def contains_carnivore_of_another_species(record)
-    record.cage.dinosaurs.joins(:species).where(species: { type_of: 'carnivore'})
-    .where.not(species: { name: record.species.name }).exists?
+    record.cage.dinosaurs.carnivores.where.not(species: { name: record.species.name }).exists?
   end
 end
