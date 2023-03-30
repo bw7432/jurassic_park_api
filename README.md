@@ -18,7 +18,8 @@ rails s
 rspec spec/validators/can_assign_to_cage_validator_spec.rb
 ```
 
-## api can be found at localhost/api/v1
+## api can be found at localhost:3000/api/v1
+
 ## show all routes
 
 ```bash
